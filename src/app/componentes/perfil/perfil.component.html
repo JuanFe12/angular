@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+
+<div class=" container fotos">
+    <div class="container foto " 
+    appDropfiles 
+    *ngFor="let item of items | async"
+    [archivos] ='archivos'
+    (mouseSobre)="estasobredrop = $event" 
+    [ngClass]="{'file-over': estasobredrop}"  >
+    <img [src]="item.url" width="800px" height="250px" >
+    <img src="/assets/imagenes/camara-de-fotos.png"(click)="subir()" class="">
+
+
+    </div>
+                
+    <div 
+    appDropfiles 
+    *ngFor="let item of items | async"
+    [archivos] ='archivos'
+    (mouseSobre)="estasobredrop = $event" 
+    [ngClass]="{'file-over': estasobredrop}" 
+    class="perfil">
+
+        <img src="/assets/imagenes/profile.png" data-toggle="modal" data-target="#exampleModal" [src]="item.url"  width="200px">
+   
+        <img src="/assets/imagenes/camara-de-fotos.png"(click)="cargarImagenes()" class="cargarfotos">
+
+                
+    </div>
+    <p class="name-perfil"> <b>{{usuario.nombre}}</b>  </p>
+
+</div>
+
+<div 
+appDropfiles 
+*ngFor="let item of items | async"
+[archivos] ='archivos'
+(mouseSobre)="estasobredrop = $event" 
+[ngClass]="{'file-over': estasobredrop}" 
+class="fotosperfil">
+
+
+  <div class="nameperfil"><b> {{usuario.nombre}} </b>  </div>
+   <img src="/assets/imagenes/profile.png" data-toggle="modal" data-target="#exampleModal" [src]="item.url"  width="550px" height="450px" class="imagenesperfil">
+   <img src="https://img.icons8.com/ios/50/000000/like.png" width="24px" class="megusta"  (click)="myFunction(megusta)" >
+   <p class="like">Me gusta</p> <hr>
+
+   <img src="https://img.icons8.com/ios/50/000000/like.png" width="24px" class="iconcomment">
+   <p class="comment">Comentarios</p>
+   <p id="demo"> </p>
+
+   <div>
+     <form>
+      <div class="Showcomments">
+          <div *ngFor=" let  Comments of comentarios" class="commentsview">
+              <div class="nameuser"><b> {{usuario.nombre}} </b> </div>
+              <p class="nameuser"> {{Comments}} </p>
+          </div>  
+      </div>
+    
+      <img [src]="item.url"  width="50px" class="imgcomments">
+
+  
+
+      <input     class="form-control text mr-sm-2" 
+      id="exampleFormControlTextarea1" 
+      placeholder="Di algo" 
+      rows="1"
+      name="comentarios"
+      (keyup.enter)="comentar()"
+      [(ngModel)]="Comments"
+      class="comments">
+    </form>
+
+   
+   </div>
+
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="" *ngFor="let item of items | async">
+            <img [src]="item.url" width="498px">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

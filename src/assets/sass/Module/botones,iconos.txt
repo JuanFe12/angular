@@ -1,0 +1,1 @@
+Los componentes que se repiten a lo largo de la aplicacion tales como botones, iconos, widgets 

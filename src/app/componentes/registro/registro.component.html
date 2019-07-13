@@ -1,0 +1,97 @@
+<form 
+(ngSubmit) = "onSubmit(registrerFrom)"
+#registrerFrom ="ngForm"
+class="container formulario card ">
+
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+
+        <input 
+        type="text" 
+        class="form-control" 
+        id="nombre" 
+        name="nombre"
+        minlength="2"
+        [(ngModel)]="usuario.nombre"
+        placeholder="Enter name">
+
+        
+        <span 
+        *ngIf="registrerFrom.submitted && registrerFrom.controls['nombre'].errors" 
+        class="text-danger">Debe tener 2 caracteres</span>
+
+    </div>  
+
+    <div class="form-group">
+        <label for="apellido">Apellido</label>
+
+        <input 
+        type="text" 
+        class="form-control" 
+        id="apellido" 
+        name="apellido"
+        [(ngModel)]="usuario.apellido"
+        placeholder="Enter apellido">
+    </div>
+
+  <div class="form-group">
+    <label for="email">Correo Electronico</label>
+
+    <input 
+    type="email" 
+    class="form-control" 
+    id="email" 
+    name="email"
+    [(ngModel)]="usuario.email"
+    aria-describedby="emailHelp" 
+    required 
+    email
+    placeholder="Enter email">
+    
+    <span 
+    *ngIf="registrerFrom.submitted && registrerFrom.controls['email'].errors" 
+    class="text-danger">El correo es obligatorio</span>
+
+
+  </div>
+
+  <div class="form-group">
+    <label for="password">Contraseña</label><br>
+
+    <input 
+    type="password" 
+    class="form-control" 
+    id="password"
+    name="password" 
+    minlength="3"
+    required
+    [(ngModel)]="usuario.password"
+    placeholder="Password">
+    <span 
+    *ngIf="registrerFrom.submitted && registrerFrom.controls['password'].errors" 
+    class="text-danger">La contraseña es obligatorio</span>
+
+  </div>
+
+  <div>
+      <div class="contact100-form-checkbox">
+          <input [(ngModel)]="recordarme"
+                 class="input-checkbox100" 
+                 id="check" 
+                 type="checkbox" 
+                 name="remember-me">
+
+          <label class="label-checkbox100" for="check">
+              Recordar mi usuario
+          </label>
+      </div>
+  </div>
+  
+  <div>
+      <a routerLink="/login" class="txt1">
+          ¿Ya tienes cuenta? / Ingresar
+      </a>
+  </div>
+
+  <button type="submit" class="btn btn-primary registrer">Registrese</button>
+</form>
