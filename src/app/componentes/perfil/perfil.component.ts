@@ -69,6 +69,8 @@ export class PerfilComponent implements OnInit {
     console.log(this.megusta)
   }
 
+
+   //TODO: Organizar que solo muestre 3 cimentarios que los demas los esconda
    comentar(){
   //Agregamos el array de comentarios
    this.comentarios.push(this.Comments);

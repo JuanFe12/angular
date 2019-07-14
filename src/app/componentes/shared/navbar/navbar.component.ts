@@ -33,6 +33,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  buscar(termino: string){
+  }
+
 
 
 
