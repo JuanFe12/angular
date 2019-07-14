@@ -25,10 +25,12 @@
     </div>
 
     <form 
-    (ngSubmit)="buscarUsuario(buscarTexto.value)"
-    class="form-inline ">
+          (ngSubmit)="buscarUsuario(buscarTexto.value)"
+          class="form-inline ">
+
       <input class="form-control forms" type="search" placeholder="Search" aria-label="Buscar"  #buscarTexto>
       <button (click)="buscarUsuario(buscarTexto.value)" class="btn btn-outline-success" type="button">Buscar</button>
+      
     </form>
   
   </div>

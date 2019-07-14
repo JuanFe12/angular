@@ -33,7 +33,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  buscar(termino: string){
+  buscarUsuario(buscarTexto: string){
+
+    if(buscarTexto.lenght == 0){
+      return
+    }
+   
+    console.log(buscarTexto);
+    
+
   }
 
 
