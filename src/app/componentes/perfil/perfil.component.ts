@@ -60,6 +60,8 @@ export class PerfilComponent implements OnInit {
      console.log(event)
   }
 
+  //Contador para el boton me gusta
+
    myFunction(megusta) {
     megusta = megusta + 1;
     this.megusta = megusta;
@@ -68,14 +70,13 @@ export class PerfilComponent implements OnInit {
   }
 
    comentar(){
-
-
-  //Agregamos un array y lo ordenamos al revez.
+  //Agregamos el array de comentarios
    this.comentarios.push(this.Comments);
-   this.comentarios.sort(this.Comments)
    console.log(this.comentarios)
 
-        
+   if(this.comentarios.length > 1) {  
+    document.getElementById("p2").style.display = "none";
+       }       
     }
     
 }
