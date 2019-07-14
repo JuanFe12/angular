@@ -45,31 +45,35 @@ class="fotosperfil">
    <img src="https://img.icons8.com/ios/50/000000/like.png" width="24px" class="megusta"  (click)="myFunction(megusta)" >
    <p class="like">Me gusta</p> <hr>
 
-   <img src="https://img.icons8.com/ios/50/000000/like.png" width="24px" class="iconcomment">
-   <p class="comment">Comentarios</p>
-   <p id="demo"> </p>
+    <img src="/assets/imagenes/comentarios.png" width="24px" class="iconcomment">
+    <p class="comment">Comentarios</p>
+    <p id="demo"> </p> 
 
    <div>
      <form>
       <div class="Showcomments">
-          <div *ngFor=" let  Comments of comentarios" class="commentsview">
+          <div *ngFor=" let  Comments of comentarios" class="commentsview" id="p2">
               <div class="nameuser"><b> {{usuario.nombre}} </b> </div>
               <p class="nameuser"> {{Comments}} </p>
           </div>  
       </div>
     
-      <img [src]="item.url"  width="50px" class="imgcomments">
+
+      <div class="contentcomments">
+           <img [src]="item.url"  width="50px" class="imgcomments">
 
   
 
-      <input     class="form-control text mr-sm-2" 
-      id="exampleFormControlTextarea1" 
-      placeholder="Di algo" 
-      rows="1"
-      name="comentarios"
-      (keyup.enter)="comentar()"
-      [(ngModel)]="Comments"
-      class="comments">
+           <input     class="form-control text mr-sm-2" 
+                      id="exampleFormControlTextarea1" 
+                      placeholder="Di algo" 
+                      rows="1"
+                      name="comentarios"
+                      (keyup.enter)="comentar()"
+                      [(ngModel)]="Comments"
+                      class="comments">
+  
+      </div>
     </form>
 
    
