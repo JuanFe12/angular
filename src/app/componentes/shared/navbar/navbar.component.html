@@ -14,7 +14,7 @@
       </li>
 
       
-       <p class="nombre"> {{usuario.nombre}} </p>
+       <p class="nombre"> {{usuario.nombre}} {{usuario.apellido}} </p>
 
 
       <button type="submit" (click)="salir()" class=" mr-sm-2 salir">Salir <img [src]="'/assets/imagenes/salir.png'" width="20px"></button>
@@ -24,14 +24,14 @@
       <img [src]="item.url" width="24px">
     </div>
 
-    <form 
-          (ngSubmit)="buscarUsuario(buscarTexto.value)"
+    <div 
+         
           class="form-inline ">
 
-      <input class="form-control forms" type="search" placeholder="Search" aria-label="Buscar"  #buscarTexto>
-      <button (click)="buscarUsuario(buscarTexto.value)" class="btn btn-outline-success" type="button">Buscar</button>
+      <input class="form-control forms" type="search" (keyup.enter)="buscarUsuario(buscarTexto.value)" placeholder="Search" aria-label="Buscar"  #buscarTexto>
       
-    </form>
+  </div>
   
   </div>
 </nav>
+

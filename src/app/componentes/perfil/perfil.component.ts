@@ -4,12 +4,14 @@ import { FileItem } from '../../models/file-item';
 import { cargaservie } from '../../services/carga.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
 
 
 
 
 
-export interface Item { nombre: string; url: string; }
+export interface Item {
+  userId: string; nombre: string; url: string; }
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -34,7 +36,7 @@ export class PerfilComponent implements OnInit {
   comentarios: any = []
 
 
-  private contador = 0
+
 //Estoy mostrando las imagenes cargadas por en el usuario
   constructor(private _Carga: cargaservie,private afs: AngularFirestore) { 
     this.itemsCollection = afs.collection<Item>('imagenes');
@@ -80,6 +82,8 @@ export class PerfilComponent implements OnInit {
     document.getElementById("p2").style.display = "none";
        }       
     }
+
+    
     
 }
 

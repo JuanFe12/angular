@@ -11,6 +11,8 @@ import { map } from 'rxjs/operators'
 })
 export class AuthService {
 
+   private usuarios = 'users';
+   private database = 'https://personal-48424.firebaseio.com'
    private url  = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
    private apikey = 'AIzaSyADJMAMCwHPaQRDiKkiohbDzAPbeB8Sk7s';
    userToken : string;
@@ -29,6 +31,9 @@ export class AuthService {
   logout(){
 
     localStorage.removeItem('token');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('apellido');
+
   }
 //TODO:Cuando el usuario se logee recontruir la url de la imagen y mostarla en la foto de perfil.
   login( usuario: UsuarioModel ){
@@ -84,6 +89,7 @@ export class AuthService {
     localStorage.setItem('token', idToken);
 
 
+
   }
 //Obteniendo el token guardado
   leerToken(){
@@ -101,4 +107,7 @@ export class AuthService {
     return this.userToken;
   }
 
+
 }
+
+

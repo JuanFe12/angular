@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
-
+import { ItemsService } from '../../services/items.service';
+import { Item } from '../../models/Item';
 
 
 declare var $: any;
@@ -14,75 +11,37 @@ declare var $: any;
   styleUrls: ['./inicio.component.sass']
 })
 export class InicioComponent implements OnInit {
-  main: any = "";
-  nombre: any = "";
-  apellido: any = ""
-  array_mains : any = []
-  index: any =""
- 
-  constructor() { }
- 
-   ngOnInit() {
-     //Obtenemos el nombre que el usuario ingreso en el registro y lo obtenemos del localstorage
-    this.nombre = localStorage.getItem('nombre');
+  items: Item[];
+  editState: boolean = false;
+  itemToEdit: Item;
 
-    
-   }
- //TODO: Guardar el array en una base de datos
-   guardar(){
+  constructor(private itemsService: ItemsService) { }
 
-    //Agregamos un array y lo ordenamos al revez.
-     this.array_mains.push(this.main);
-     this.array_mains.reverse(this.array_mains)
-
-
- 
-     console.log(this.array_mains)
- 
-   }
- 
-   eliminar(item){
-
-  //Eliminamos el array 
-      for (var i = this.array_mains.length; i--;) {
-
-          if (this.array_mains[i] === item) {
-
-              this.array_mains.splice(i, 1);
-              
-          }
-      }
-  
-    //El -1 indica que no ha encontrado el elemento
-
-    }
-   
-  //TODO: Organizar el editar, para que la publicacion pueda eliminar.
-   editar(){
-
-    //Editamos el array añadido
-    for (var i = 0; i < this.array_mains.length; i++) {
-      this.array_mains[i] 
-    
-    }
+  ngOnInit() {
+    this.itemsService.getItems().subscribe(items => {
+      //console.log(items);
+      this.items = items;
+    });
   }
 
-  //Otras maneras de editar la publicacion
-    /*
-    let index = this.array_mains.indexOf(this.array_mains);
-    let articulos = [];
- 
-    if (index > -1) {
+  deleteItem(event, item: Item){
+    this.clearState();
+    this.itemsService.deleteItem(item);
+  }
 
-       this.array_mains.splice(articulos.push())
-       articulos.push(this.main)
+  editItem(event, item: Item){
+    this.editState = true;
+    this.itemToEdit = item;
+  }
 
-    
-    */
-     //let items = this.array_mains
+  updateItem(item: Item){
+    this.itemsService.updateItem(item);
+    this.clearState();
+  }
 
-
-  
-  
+  clearState(){
+    this.editState = false;
+    this.itemToEdit = null;
+  }
  
   }

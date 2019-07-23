@@ -28,6 +28,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { DropfilesDirective } from './directves/dropfiles.directive';
+import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
+import { AddItemComponent } from './componentes/add-item/add-item.component';
+import { ItemsService } from './services/items.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +40,8 @@ import { DropfilesDirective } from './directves/dropfiles.directive';
     LoginComponent,
     RegistroComponent,
     DropfilesDirective,
+    BusquedaComponent,
+    AddItemComponent,
     
   ],
   imports: [
@@ -54,7 +59,7 @@ import { DropfilesDirective } from './directves/dropfiles.directive';
     MatFormFieldModule
 
   ],
-  providers: [cargaservie],
+  providers: [cargaservie, ItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

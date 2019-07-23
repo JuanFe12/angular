@@ -1,69 +1,37 @@
 <app-navbar></app-navbar>
 
+<app-add-item></app-add-item>
 
+<div *ngIf="items?.length > 0;else noItems" class="formEditItem container">
+    <div *ngFor="let item of items" class="collection">
 
-<div class=" container">
-
-  <form
-  class="form-inline formularioo my-2 my-lg-0 ">
-
-  <input  
-    class="form-control text mr-sm-2" 
-    id="exampleFormControlTextarea1" 
-    placeholder="Di algo" 
-    rows="1"
-    name="texttarea"
-    [(ngModel)]="main">
-
-    <button type="submit" (click)="guardar()"  class="enviar">Publicar</button>
-  </form>
-
-<div class="container" *ngFor="let  main of array_mains">
-  <div class="publicar container">
-     <div class="publicar">
-         <div class="card-body"> 
-           <div class="card-title"> <b>{{nombre }}</b></div>
-           <p class="card-text">{{ main }}</p>
-
-           <img [src]="'/assets/imagenes/cubo-de-basura.png'" (click)="eliminar(main)" class="eliminar">
-
-
-           
-           <!-- Button trigger modal -->
-           <img [src]="'/assets/imagenes/editar.png'" data-toggle="modal" data-target="#exampleModal" class="editar">
-
-
-           <!-- Modal -->
-          <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog text" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                       <h5 class="modal-title" id="exampleModalLabel">Editar publicación</h5>
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                       </button>
+      <div class="collection-item container"><strong>{{item.title}}: </strong> {{item.description}} 
+          <button type="button" (click)="editItem($event, item)" >Editar</button> 
+          <button *ngIf="editState && itemToEdit.id == item.id" (click)="clearState()" class="clear">limpiar</button>  
+          <div *ngIf="editState && itemToEdit.id == item.id" class="formEditItem">
+              <form (ngSubmit)="updateItem(item)">
+                  <div class="row">
+                      <div class="input-field">
+                        <input type="text" placeholder="Add Title" [(ngModel)]="item.title" name="title">
                       </div>
-                      <div class="modal-body"> 
-                        <textarea  
-                        class="form-control  col-9" 
-                        id="exampleFormControlTextarea1" 
-                        placeholder="Que estas pensando..." 
-                        rows="1"
-                        name="texttarea"
-                        [(ngModel)]="main"></textarea>
+                      <div class="input-field">
+                        <input type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description">
+                      </div>
+                      <input type="submit" value="Update Item">
+                      <button (click)="deleteItem($event, item)" >Delete Item</button>
                     </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="editar(main)"  data-dismiss="modal">Guardar cambios</button>
-                    </div>
-                  </div>
-                </div>
+              </form>
             </div>
-         </div>
-       </div>
+        
+          </div>
+    </div>
+
   </div>
-</div>
+
+  <ng-template #noItems>
+    <hr>
+    <h5>No hay publicaciones en el momento</h5>
+  </ng-template>
 
 
 
-</div>

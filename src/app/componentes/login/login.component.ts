@@ -54,6 +54,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nombre', this.usuario.nombre)
         localStorage.setItem('apellido', this.usuario.apellido)
 
+      }else{
+        localStorage.removeItem('email')
+
       }
 //Cuando se logee guarde al nombre en el localstorage enviado desde el registro, para mostrarlo en el inicio
       if(this.login){

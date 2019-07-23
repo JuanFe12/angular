@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit {
 
   archivos:FileItem[] = []
   usuario: UsuarioModel = new UsuarioModel()
-  nombre: any = "";
-  apellido: any = ""
+  nombre: string;
+  apellido: string
+  termino:string;
 
   constructor( private auth: AuthService,
     private router: Router) { }
@@ -33,18 +34,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  buscarUsuario(buscarTexto: string){
-
-    if(buscarTexto.lenght == 0){
-      return
-    }
-   
-    console.log(buscarTexto);
-    
-
-  }
-
-
-
+  buscarUsuario( buscarTexto: string){
+    this.router.navigate(['/busqueda', buscarTexto]);
+   }
 
 }
